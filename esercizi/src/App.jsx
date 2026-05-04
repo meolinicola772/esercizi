@@ -17,18 +17,18 @@ export function Clock() {
     const Timer = setInterval(() => {
       setTime(new Date())  
     }, 1000)
-useEffect(() => {
-    const Timer = setInterval(() => {
-      setTime(new Date())  
-    }, 1000)
 
     return () => clearInterval(Timer) 
   }, []) 
   return <h2>{time.toLocaleTimeString()}</h2> 
-} )};
+}
 
 export function Counter() {
 const [counter, setCounter] = useState (0)
+
+    useEffect(() => {
+  console.log('Valore contatore:', counter)
+}, [counter])
 
 function handleCounterIncrement () {
     setCounter (counter + 1)
@@ -39,13 +39,15 @@ function handleCounterIncrement () {
  }
 
   function handleReset() {
-    setCounter(initialValue) }
+    setCounter(0) }
+
+
   
 
 return (
 <div>
 
-<CounterDisplay count={counter} />
+<CounterDisplay counter={counter} />
 <button onClick={handleCounterIncrement}>Increment</button>
 <button onClick={handleDecrement}>decrementare</button>
 <button onClick={handleReset}>Reset</button>
